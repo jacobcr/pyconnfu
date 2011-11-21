@@ -12,9 +12,10 @@ from connfu import loader
 from connfu.parser import parse
 
 class ConnfuClient(object):
-    def __init__(self):
+    def __init__(self, token):
         self.apps = loader.getapps()
         downloader.register_mhandler(self.message)
+        downloader.settoken(token)
 
     def message(self, message):
         stream, event, message = parse(message)
@@ -32,7 +33,10 @@ class ConnfuClient(object):
 
 
 def main():
-    connfuclient = ConnfuClient()
+    from sys import argv
+    if len(argv) != 2:
+        raise TypeError('usage python connfuclient <token>')
+    connfuclient = ConnfuClient(argv[1])
     connfuclient.run()
 
 

@@ -15,10 +15,15 @@ from unittest import TestCase
 import urllib2
 
 baseURL = "https://stream.connfu.com/connfu-stream-testing-emc2"
-headers = {'authorization': "Backchat f2fc94294e373d67e9bd404fcc247f73"}
 
 _keepconn = True
 _mhandler = []
+_headers = {}
+
+def settoken(token):
+    global _headers
+    _headers = {'authorization': token}
+
 
 def register_mhandler(func, *args, **kw):
     _mhandler.append((func, args, kw))
@@ -51,5 +56,5 @@ def dispatch(q):
 def init():
     q = JoinableQueue()
     greenletdispatcher = spawn(dispatch, q)
-    greenletsource = spawn(readURL, baseURL, headers, q)
+    greenletsource = spawn(readURL, baseURL, _headers, q)
     return greenletdispatcher
