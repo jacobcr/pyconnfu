@@ -19,13 +19,13 @@ class TestApp(TestCase):
 
     def testMessageRssOk(self):
         line = self.file.readline()
-        stream, message = parse(line)
+        stream, event, message = parse(line)
         self.assertEquals('rss', stream)
 
     def testMessageSMSOk(self):
         self.file.readline()
         line = self.file.readline()
-        stream, message = parse(line)
+        stream, event, message = parse(line)
         self.assertEquals('sms', stream)
 
     def testComplete(self):

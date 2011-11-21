@@ -23,9 +23,9 @@ def parse(message):
     try:
         message['id']
         message['actor']
-        return 'rss', message['title']
+        return 'rss', 'new', message['title']
     except KeyError, e:
         print 'could not parse rss message'
         raise e
     except TypeError,e:
-        return 'sms', message[1]['message']
+        return 'sms', 'new', message[1]['message']

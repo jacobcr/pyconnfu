@@ -15,9 +15,11 @@ streamstypes = [x[0] for x in streams]
 
 class App(object):
     def __init__(self, stream, event):
-        self.stream = streams[streamstypes.index(stream)]
-        self.event = self.stream[1].index(event)
+        streamstypes.index(stream)
+        streams[streamstypes.index(stream)][1].index(event)
+        self.stream = stream
+        self.event = event
 
-    def callback(message):
+    def callback(self, message):
         pass
         

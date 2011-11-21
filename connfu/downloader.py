@@ -15,36 +15,41 @@ from unittest import TestCase
 import urllib2
 
 baseURL = "https://stream.connfu.com/connfu-stream-testing-emc2"
-headers = {'authorization': "none"}
+headers = {'authorization': "Backchat f2fc94294e373d67e9bd404fcc247f73"}
 
+_keepconn = True
+_mhandler = []
+
+def register_mhandler(func, *args, **kw):
+    _mhandler.append((func, args, kw))
 
 def readURL(url, headers, queue):
     req = urllib2.Request(url, headers=headers)
     response = urllib2.urlopen(req) 
     line = response.readline()
-    while line:
+    while line and _keepconn:
         queue.put(line)
         line = response.readline()
     queue.put(StopIteration)
     
+def stop():
+    global _keepconn
+    _keepconn = False
+
 def dispatch(q):
-    while True:
+    for item in q:
         try:
-            item = q.get()
-            print item
+            for func,args,kw in _mhandler:
+                try:
+                    func(item, *args, **kw)
+                except:
+                    import traceback
+                    print("Error calling messagecallback (%s): %s" % (func, traceback.print_exc()))
         finally:
             q.task_done()
 
-def main():
+def init():
     q = JoinableQueue()
     greenletdispatcher = spawn(dispatch, q)
     greenletsource = spawn(readURL, baseURL, headers, q)
-    greenletdispatcher.join()
-
-
-    
-if __name__ == '__main__':
-    main()
-
-        
-
+    return greenletdispatcher

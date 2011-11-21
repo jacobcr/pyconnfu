@@ -23,7 +23,7 @@ def package_contents(package_name):
         for module in listdir(pathname)
         if module.endswith(MODULE_EXTENSIONS)])
 
-def getapps(appspath = 'connfu.apps'):
+def getapps(appspath = 'apps'):
     modules = package_contents(appspath)
     apps =[]
 

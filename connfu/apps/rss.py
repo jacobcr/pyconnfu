@@ -11,5 +11,5 @@ from connfu.app import App
 class RssApp(App):
     def __init__(self):
         App.__init__(self, 'rss', 'new')
-    def callback(message):
+    def callback(self, message):
         print message
