@@ -15,10 +15,7 @@ from unittest import TestCase
 import urllib2
 
 baseURL = "https://stream.connfu.com/connfu-stream-testing-emc2"
-#baseURL= "http://www.meneame.net"
-token = "Backchat f2fc94294e373d67e9bd404fcc247f73"
-headers = {'authorization': token}
-#headers = {}
+headers = {'authorization': "none"}
 
 
 def readURL(url, headers, queue):
@@ -37,15 +34,17 @@ def dispatch(q):
             print item
         finally:
             q.task_done()
-    
-    
 
-class TestApp(TestCase):
-    def testBasic(self):
-        q = JoinableQueue()
-        eventRSS = Event()
-        greenletdispatcher = spawn(dispatch, q)
-        greenletsource = spawn(readURL, baseURL, headers, q)
+def main():
+    q = JoinableQueue()
+    greenletdispatcher = spawn(dispatch, q)
+    greenletsource = spawn(readURL, baseURL, headers, q)
+    greenletdispatcher.join()
+
+
+    
+if __name__ == '__main__':
+    main()
 
         
 
