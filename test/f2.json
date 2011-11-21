@@ -1,0 +1,5 @@
+{"id":"http://identi.ca/notice/85021978","occurred_at":"2011-11-08T17:34:18.000Z","actor":{"object_type":"person","id":"http://identi.ca/user/544235","display_name":"devbrotest","url":"http://identi.ca/user/544235"},"verb":"post","object":{"object_type":"article","id":"http://identi.ca/notice/85021978","display_name":"http://ur1.ca/5owxh","published":"2011-11-08T17:34:18.000Z","updated":"2011-11-08T17:34:18.000Z","content":"<a
+href=\"http://ur1.ca/5owxh\" title=\"http://www.fastfoodpackaging.us/the-structure-and-uses-of-chef-knives/\" rel=\"nofollow
+external\">http://ur1.ca/5owxh</a>"},"title":"http://ur1.ca/5owxh","provider":{"object_type":"service","id":"http://identi.ca/","display_name":"Identi.ca
+public timeline","summary":"Identi.ca updates from
+everyone!","url":"tag:identi.ca,2011-11-08:PublicTimeline","published":"2011-11-08T17:38:54.000Z"},"backchat":{"source":"WEBFEED","bare_uri":"http://identi.ca/api/statuses/public_timeline.atom","user_path":["http://identi.ca/api/statuses/public_timeline.atom"],"journal":["feed-distributor"],"uuid":"87ba7f82-0a30-11e1-b7f8-12313b050905","channels":["http://identi.ca/api/statuses/public_timeline.atom"]}}
